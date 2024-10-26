@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Huesped, Categoria, Producto , Habitacion
 import openpyxl
 from django.http import HttpResponse
+from django import forms
 
 def exportar_a_excel(modeladmin, request, queryset):
     wb = openpyxl.Workbook()
@@ -42,14 +43,23 @@ class HabitacionAdmin(admin.ModelAdmin):
     search_fields = ('numero',)
 
     
+class HuespedForm(forms.ModelForm):
+    class Meta:
+        model = Huesped
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Filtrar solo las habitaciones disponibles
+        self.fields['habitacion'].queryset = Habitacion.objects.filter(disponible=True)
 
 @admin.register(Huesped)
 class HuespedAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido', 'cedula', 'habitacion', 'fecha_check_in', 'fecha_check_out', 'precio_pagado')
     list_filter = ('habitacion','nombre')
     search_fields = ('nombre', 'apellido','cedula')
-    actions = [exportar_a_excel]
-    actions = [check_out_huesped]
+    actions = [exportar_a_excel, check_out_huesped]
+    form = HuespedForm  # Asignar el formulario personalizado
 
     
 
