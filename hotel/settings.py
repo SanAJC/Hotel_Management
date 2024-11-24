@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-uyce8=!797s)*&&0v_mw0uw+l+hykl^y+d^oyt!)$ui2ini#s^
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','web-production-7dde2.up.railway.app']
-ALLOWED_HOSTS = []
+
 
 # Application definition
 
