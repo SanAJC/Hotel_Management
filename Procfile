@@ -1,1 +1,1 @@
-web : gunicorn hotel.wsgi
+web: gunicorn hotel.wsgi
