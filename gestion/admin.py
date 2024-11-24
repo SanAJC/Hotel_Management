@@ -9,10 +9,12 @@ def exportar_a_excel(modeladmin, request, queryset):
     
     ws1 = wb.active
     ws1.title = "Huéspedes"
-    ws1.append(["ID", "Nombre", "Apellido", "Fecha de Check-in", "Fecha de Check-out"])  # Cabeceras
+    ws1.append(["ID", "Nombre", "Apellido","Cedula","Habitacion","Cobro","Fecha de Check-in", "Fecha de Check-out"])  # Cabeceras
     
     for huesped in Huesped.objects.all():
-        ws1.append([huesped.id, huesped.nombre, huesped.apellido, huesped.fecha_check_in, huesped.fecha_check_out])
+        check_in = huesped.fecha_check_in.replace(tzinfo=None) if huesped.fecha_check_in else None
+        check_out = huesped.fecha_check_out.replace(tzinfo=None) if huesped.fecha_check_out else None
+        ws1.append([huesped.id, huesped.nombre, huesped.apellido, huesped.cedula, str(huesped.habitacion), huesped.precio_pagado, check_in, check_out])
     
     ws2 = wb.create_sheet(title="Inventario")
     ws2.append(["ID", "Nombre", "Categoría", "Cantidad", "Precio"])  # Cabeceras
@@ -25,8 +27,9 @@ def exportar_a_excel(modeladmin, request, queryset):
     ws3.append(["Fecha", "Producto", "Cantidad", "Total", "Huésped"])
     
     for venta in Venta.objects.all():
+        venta_fecha = venta.fecha.replace(tzinfo=None) if venta.fecha else None
         ws3.append([
-            venta.fecha,
+            venta_fecha,
             venta.producto.nombre,
             venta.cantidad,
             venta.total,
@@ -34,7 +37,7 @@ def exportar_a_excel(modeladmin, request, queryset):
         ])
     
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename="huespedes_inventario.xlsx"'
+    response['Content-Disposition'] = 'attachment; filename="informe.xlsx"'
     
     wb.save(response)
     return response
