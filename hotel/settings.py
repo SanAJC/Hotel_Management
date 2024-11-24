@@ -193,7 +193,7 @@ USE_TZ = True
 
 # Configuración de archivos estáticos
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') # Aquí se recopilarán los archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Aquí se recopilarán los archivos estáticos
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'gestion/static')  # Asegúrate de incluir el directorio de gestión
 ]
