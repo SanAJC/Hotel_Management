@@ -198,12 +198,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'gestion/static')  # Asegúrate de incluir el directorio de gestión
 ]
 
-STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 
