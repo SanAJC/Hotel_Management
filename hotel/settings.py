@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-uyce8=!797s)*&&0v_mw0uw+l+hykl^y+d^oyt!)$ui2ini#s^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','web-production-7dde2.up.railway.app']
 
 
 # Application definition
