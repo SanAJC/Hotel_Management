@@ -18,7 +18,8 @@ def exportar_a_excel(modeladmin, request, queryset):
     ws2.append(["ID", "Nombre", "Categoría", "Cantidad", "Precio"])  # Cabeceras
     
     for producto in Producto.objects.all():
-        ws2.append([producto.id, producto.nombre, producto.categoria, producto.cantidad, producto.precio])
+        ws2.append([producto.id, producto.nombre, str(producto.categoria), producto.cantidad, producto.precio])
+
     
     ws3 = wb.create_sheet(title="Ventas")
     ws3.append(["Fecha", "Producto", "Cantidad", "Total", "Huésped"])
