@@ -67,6 +67,7 @@ JAZZMIN_SETTINGS["icons"] = {
     "gestion.producto": "fas fa-boxes",
     "gestion.categoria": "fas fa-tags",
     "gestion.habitacion": "fas fa-bed",
+    "gestion.venta": "fas fa-cash-register",
 }
 
 JAZZMIN_SETTINGS["filter_options"] = {
