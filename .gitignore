@@ -1,5 +1,6 @@
 env/
 gestion/__pycache__/
+hotel/__pycache__/
 *.py[cod]
 db.sqlite3
 staticfiles/
